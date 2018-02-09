@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
-import { Button } from 'antd-mobile'
+import { Button, ActivityIndicator } from 'antd-mobile'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions } from '../utils'
 
 // @connect()  es7 的语法 修饰器 如果对这个不是很了解请看 阮大爷的 教程  http://es6.ruanyifeng.com/
 @connect(({ app }) => ({ ...app }))
@@ -26,8 +26,15 @@ class Home extends Component {
     }
 
     render() {
+        const { fetching } = this.props
         return (
             <View style={styles.container}>
+                <ActivityIndicator
+                    text="正在加载"
+                    toast={true}
+                    color="#ff0000"
+                    animating={fetching}
+                />
                 <Text style={{ marginBottom: 20 }}>我是登录页面</Text>
                 <Button type="ghost" onClick={this.onLogin}>
                     确认登录

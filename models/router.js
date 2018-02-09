@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions } from '../utils'
 import { routerReducer } from '../router'
 
 const actions = [

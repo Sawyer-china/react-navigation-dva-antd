@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { Button } from 'antd-mobile'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions } from '../utils'
 
 // @connect()  es7 的语法 修饰器 如果对这个不是很了解请看 阮大爷的 教程  http://es6.ruanyifeng.com/
 @connect(({ app }) => ({ app }))
@@ -19,6 +19,10 @@ class User extends Component {
                 size={26}
                 style={{ color: tintColor }}
             />
+    }
+
+    logout = () => {
+        this.props.dispatch({ type: 'app/logout' })
     }
 
     render() {
@@ -42,14 +46,9 @@ class User extends Component {
                       </Button>
                     : <View>
                           <Text style={{ marginBottom: 20 }}>您已经登录了</Text>
-                          <Button
-                          type="warning"
-                          onClick={() => {
-                              console.log('退出成功')
-                          }}
-                      >
-                        退出登录
-                      </Button>
+                          <Button type="warning" onClick={this.logout}>
+                              退出登录
+                          </Button>
                       </View>}
             </View>
         )
